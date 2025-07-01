@@ -14,7 +14,6 @@ import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.crafting.RecipeManager;
-import thelm.alloyforgeryjei.recipe.AlloyForgeRecipeWithOverride;
 import thelm.alloyforgeryjei.recipe.category.AlloyForgeCategory;
 import wraith.alloyforgery.AlloyForgeScreenHandler;
 import wraith.alloyforgery.AlloyForgery;
@@ -31,7 +30,7 @@ public class AlloyForgeryJEI implements IModPlugin {
 	public static IJeiHelpers jeiHelpers;
 	public static IJeiRuntime jeiRuntime;
 
-	public static final RecipeType<AlloyForgeRecipeWithOverride> ALLOY_FORGE = new RecipeType<>(AlloyForgery.id("alloy_forge"), AlloyForgeRecipeWithOverride.class);
+	public static final RecipeType<AlloyForgeRecipe> ALLOY_FORGE = new RecipeType<>(AlloyForgery.id("alloy_forge"), AlloyForgeRecipe.class);
 
 	@Override
 	public ResourceLocation getPluginUid() {
@@ -48,8 +47,7 @@ public class AlloyForgeryJEI implements IModPlugin {
 	@Override
 	public void registerRecipes(IRecipeRegistration registration) {
 		RecipeManager recipeManager = Minecraft.getInstance().level.getRecipeManager();
-		registration.addRecipes(ALLOY_FORGE, recipeManager.getAllRecipesFor(AlloyForgeRecipe.Type.INSTANCE).stream().
-				flatMap(AlloyForgeRecipeWithOverride::fromRecipe).toList());
+		registration.addRecipes(ALLOY_FORGE, recipeManager.getAllRecipesFor(AlloyForgeRecipe.Type.INSTANCE));
 	}
 
 	@Override
