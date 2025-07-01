@@ -1,0 +1,29 @@
+{
+	"schemaVersion": 1,
+	"id": "alloyforgeryjei",
+	"version": "0@VERSION@",
+	"name": "AlloyForgeryJEI",
+	"description": "An addon to Alloy Forgery that adds JEI support.",
+	"authors": [
+		"TheLMiffy1111"
+	],
+	"contact": {
+		"homepage": "https://www.curseforge.com/minecraft/mc-mods/alloyforgeryjei",
+		"sources": "https://github.com/TheLMiffy1111/AlloyForgeryJEI",
+		"issues": "https://github.com/TheLMiffy1111/AlloyForgeryJEI/issues"
+	},
+	"license": "MIT",
+	"icon": "alloyforgeryjei.logo.png",
+	"environment": "client",
+	"entrypoints": {
+		"jei_mod_plugin": [
+			"thelm.alloyforgeryjei.AlloyForgeryJEI"
+		]
+	},
+	"depends": {
+		"minecraft": ">=1.18.2- <1.19-",
+		"jei": "*",
+		"jeidrawables": "*",
+		"alloy_forgery": "*"
+	}
+}
