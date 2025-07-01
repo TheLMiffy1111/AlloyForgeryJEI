@@ -7,17 +7,18 @@ import java.util.stream.Stream;
 
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.crafting.RecipeHolder;
 import wraith.alloyforgery.recipe.AlloyForgeRecipe;
 
-public record AlloyForgeRecipeWithOverride(AlloyForgeRecipe recipe, int overrideIndex) {
+public record AlloyForgeRecipeWithOverride(RecipeHolder<AlloyForgeRecipe> recipeHolder, int overrideIndex) {
 
-	public static Stream<AlloyForgeRecipeWithOverride> fromRecipe(AlloyForgeRecipe recipe) {
-		return IntStream.rangeClosed(0, recipe.getTierOverrides().size()).
+	public static Stream<AlloyForgeRecipeWithOverride> fromRecipeHolder(RecipeHolder<AlloyForgeRecipe> recipe) {
+		return IntStream.rangeClosed(0, recipe.value().getTierOverrides().size()).
 				mapToObj(i -> new AlloyForgeRecipeWithOverride(recipe, i));
 	}
 
 	public List<List<ItemStack>> getInputs() {
-		return recipe.getIngredientsMap().entrySet().stream().
+		return recipeHolder.value().getIngredientsMap().entrySet().stream().
 				map(entry -> Arrays.stream(entry.getKey().getItems()).
 						map(s -> s.copyWithCount(entry.getValue())).
 						toList()).
@@ -26,18 +27,18 @@ public record AlloyForgeRecipeWithOverride(AlloyForgeRecipe recipe, int override
 
 	public ItemStack getOutput() {
 		if(overrideIndex > 0) {
-			List<ItemStack> overrideOutputs = recipe.getTierOverrides().values().asList();
+			List<ItemStack> overrideOutputs = recipeHolder.value().getTierOverrides().values().asList();
 			if(overrideIndex <= overrideOutputs.size()) {
 				return overrideOutputs.get(overrideIndex - 1);
 			}
 		}
-		return recipe.getOutput();
+		return recipeHolder.value().getBaseResult();
 	}
 
 	public Component getTierComponent() {
-		Object tierArg = recipe.getMinForgeTier();
+		Object tierArg = recipeHolder.value().getMinForgeTier();
 		if(overrideIndex > 0) {
-			List<AlloyForgeRecipe.OverrideRange> overrideRanges = recipe.getTierOverrides().keySet().asList();
+			List<AlloyForgeRecipe.OverrideRange> overrideRanges = recipeHolder.value().getTierOverrides().keySet().asList();
 			if(overrideIndex <= overrideRanges.size()) {
 				tierArg = overrideRanges.get(overrideIndex - 1);
 			}
@@ -46,6 +47,6 @@ public record AlloyForgeRecipeWithOverride(AlloyForgeRecipe recipe, int override
 	}
 
 	public Component getFuelComponent() {
-		return Component.translatable("container.alloy_forgery.rei.fuel_per_tick", recipe.getFuelPerTick());
+		return Component.translatable("container.alloy_forgery.rei.fuel_per_tick", recipeHolder.value().getFuelPerTick());
 	}
 }

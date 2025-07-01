@@ -49,7 +49,7 @@ public class AlloyForgeryJEI implements IModPlugin {
 	public void registerRecipes(IRecipeRegistration registration) {
 		RecipeManager recipeManager = Minecraft.getInstance().level.getRecipeManager();
 		registration.addRecipes(ALLOY_FORGE, recipeManager.getAllRecipesFor(AlloyForgeRecipe.Type.INSTANCE).stream().
-				flatMap(AlloyForgeRecipeWithOverride::fromRecipe).toList());
+				flatMap(AlloyForgeRecipeWithOverride::fromRecipeHolder).toList());
 	}
 
 	@Override

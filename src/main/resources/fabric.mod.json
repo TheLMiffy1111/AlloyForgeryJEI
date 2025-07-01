@@ -21,7 +21,7 @@
 		]
 	},
 	"depends": {
-		"minecraft": ">=1.19.4- <1.20-",
+		"minecraft": ">=1.20.3- <1.20.5-",
 		"jei": "*",
 		"jeidrawables": "*",
 		"alloy_forgery": "*"

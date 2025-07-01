@@ -2,8 +2,6 @@ package thelm.alloyforgeryjei.recipe.category;
 
 import java.util.List;
 
-import com.mojang.blaze3d.vertex.PoseStack;
-
 import mezz.jei.api.gui.builder.IRecipeLayoutBuilder;
 import mezz.jei.api.gui.drawable.IDrawable;
 import mezz.jei.api.gui.ingredient.IRecipeSlotsView;
@@ -13,6 +11,7 @@ import mezz.jei.api.recipe.RecipeType;
 import mezz.jei.api.recipe.category.IRecipeCategory;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.Font;
+import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.ItemStack;
@@ -81,17 +80,17 @@ public class AlloyForgeCategory implements IRecipeCategory<AlloyForgeRecipeWithO
 	}
 
 	@Override
-	public void draw(AlloyForgeRecipeWithOverride recipe, IRecipeSlotsView recipeSlotsView, PoseStack poseStack, double mouseX, double mouseY) {
-		INPUT_SLOTS.draw(poseStack, 0, 20);
-		FAUCET.draw(poseStack, 101, 0);
-		INGOT.draw(poseStack, 105, 3);
+	public void draw(AlloyForgeRecipeWithOverride recipe, IRecipeSlotsView recipeSlotsView, GuiGraphics guiGraphics, double mouseX, double mouseY) {
+		INPUT_SLOTS.draw(guiGraphics, 0, 20);
+		FAUCET.draw(guiGraphics, 101, 0);
+		INGOT.draw(guiGraphics, 105, 3);
 		Font font = Minecraft.getInstance().font;
-		font.draw(poseStack, recipe.getTierComponent(), 2, 0, 0x404040);
-		font.draw(poseStack, recipe.getFuelComponent(), 2, 10, 0x404040);
+		guiGraphics.drawString(font, recipe.getTierComponent(), 2, 0, 0x404040, false);
+		guiGraphics.drawString(font, recipe.getFuelComponent(), 2, 10, 0x404040, false);
 	}
 
 	@Override
 	public ResourceLocation getRegistryName(AlloyForgeRecipeWithOverride recipe) {
-		return new ResourceLocation("%s/%s".formatted(recipe.recipe().getId(), recipe.overrideIndex()));
+		return new ResourceLocation("%s/%s".formatted(recipe.recipeHolder().id(), recipe.overrideIndex()));
 	}
 }

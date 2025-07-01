@@ -84,14 +84,14 @@ repositories {
 	}
 }
 
-def mcVersion = "1.19.4"
+def mcVersion = "1.20.4"
 def modName = "AlloyForgeryJEI"
 def modId = "alloyforgeryjei"
-def specVersion = "19.4"
+def specVersion = "20.4"
 def vendor = "thelm"
 
 group = "thelm.alloyforgeryjei"
-version = "19.4.0"
+version = "20.4.0"
 
 archivesBaseName = modName
 
@@ -130,23 +130,23 @@ dependencies {
 	implementation "org.apache.logging.log4j:log4j-core:2.24.3"
 
 	// Minecraft
-	minecraft "com.mojang:minecraft:1.19.4"
+	minecraft "com.mojang:minecraft:1.20.4"
 	mappings loom.layered {
 		officialMojangMappings {
 			nameSyntheticMembers = false
 		}
-		parchment "org.parchmentmc.data:parchment-1.19.4:2023.06.26@zip"
+		parchment "org.parchmentmc.data:parchment-1.20.4:2024.04.14@zip"
 	}
 	modImplementation "net.fabricmc:fabric-loader:0.16.14"
-	modImplementation "net.fabricmc.fabric-api:fabric-api:0.87.2+1.19.4"
-	modImplementation "eu.pb4:placeholder-api:2.1.1+1.19.4"
-	modImplementation "com.terraformersmc:modmenu:6.3.1"
+	modImplementation "net.fabricmc.fabric-api:fabric-api:0.97.2+1.20.4"
+	modImplementation "eu.pb4:placeholder-api:2.4.0-pre.3+1.20.4"
+	modImplementation "com.terraformersmc:modmenu:9.2.0"
 
 	// Dependencies
-	modImplementation("mezz.jei:jei-1.19.4-fabric:13.1.0.19") {transitive = false}
-	include(modImplementation("thelm.jeidrawables:JEIDrawables-Fabric:19.4.1"))
-	modImplementation "io.wispforest:owo-lib:0.10.6+1.19.4"
-	modImplementation "curse.maven:alloy-forgery-438718:4487545"
+	modImplementation("mezz.jei:jei-1.20.4-fabric:17.3.1.5") {transitive = false}
+	include(modImplementation("thelm.jeidrawables:JEIDrawables-Fabric:20.4.1"))
+	modImplementation "io.wispforest:owo-lib:0.12.6+1.20.3"
+	modImplementation "curse.maven:alloy-forgery-438718:5268123"
 }
 
 def replacements = [
