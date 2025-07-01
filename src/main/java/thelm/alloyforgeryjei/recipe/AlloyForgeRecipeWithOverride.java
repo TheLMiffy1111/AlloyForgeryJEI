@@ -19,8 +19,7 @@ public record AlloyForgeRecipeWithOverride(AlloyForgeRecipe recipe, int override
 	public List<List<ItemStack>> getInputs() {
 		return recipe.getIngredientsMap().entrySet().stream().
 				map(entry -> Arrays.stream(entry.getKey().getItems()).
-						map(ItemStack::copy).
-						peek(s -> s.setCount(entry.getValue())).
+						map(s -> s.copyWithCount(entry.getValue())).
 						toList()).
 				toList();
 	}

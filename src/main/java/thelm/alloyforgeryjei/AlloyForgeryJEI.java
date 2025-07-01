@@ -10,7 +10,7 @@ import mezz.jei.api.registration.IRecipeRegistration;
 import mezz.jei.api.registration.IRecipeTransferRegistration;
 import mezz.jei.api.runtime.IJeiRuntime;
 import net.minecraft.client.Minecraft;
-import net.minecraft.core.Registry;
+import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.crafting.RecipeManager;
@@ -95,6 +95,6 @@ public class AlloyForgeryJEI implements IModPlugin {
 		if(res != 0) {
 			return res;
 		}
-		return Registry.BLOCK.getKey(a).compareTo(Registry.BLOCK.getKey(b));
+		return BuiltInRegistries.BLOCK.getKey(a).compareTo(BuiltInRegistries.BLOCK.getKey(b));
 	}
 }

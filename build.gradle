@@ -84,14 +84,14 @@ repositories {
 	}
 }
 
-def mcVersion = "1.19.2"
+def mcVersion = "1.19.3"
 def modName = "AlloyForgeryJEI"
 def modId = "alloyforgeryjei"
-def specVersion = "19.2"
+def specVersion = "19.3"
 def vendor = "thelm"
 
 group = "thelm.alloyforgeryjei"
-version = "19.2.0"
+version = "19.3.0"
 
 archivesBaseName = modName
 
@@ -130,23 +130,23 @@ dependencies {
 	implementation "org.apache.logging.log4j:log4j-core:2.24.3"
 
 	// Minecraft
-	minecraft "com.mojang:minecraft:1.19.2"
+	minecraft "com.mojang:minecraft:1.19.3"
 	mappings loom.layered {
 		officialMojangMappings {
 			nameSyntheticMembers = false
 		}
-		parchment "org.parchmentmc.data:parchment-1.19.2:2022.11.27@zip"
+		parchment "org.parchmentmc.data:parchment-1.19.3:2023.06.25@zip"
 	}
 	modImplementation "net.fabricmc:fabric-loader:0.16.14"
-	modImplementation "net.fabricmc.fabric-api:fabric-api:0.77.0+1.19.2"
-	modImplementation "eu.pb4:placeholder-api:2.0.0-pre.1+1.19.2"
-	modImplementation "com.terraformersmc:modmenu:4.2.0-beta.2"
+	modImplementation "net.fabricmc.fabric-api:fabric-api:0.76.1+1.19.3"
+	modImplementation "eu.pb4:placeholder-api:2.0.0-rc.1+1.19.3"
+	modImplementation "com.terraformersmc:modmenu:5.1.0"
 
 	// Dependencies
-	modImplementation("mezz.jei:jei-1.19.2-fabric:11.8.1.1034") {transitive = false}
-	include(modImplementation("thelm.jeidrawables:JEIDrawables-Fabric:19.2.1"))
-	modImplementation "io.wispforest:owo-lib:0.9.3+1.19"
-	modImplementation "curse.maven:alloy-forgery-438718:4921470"
+	modImplementation("mezz.jei:jei-1.19.3-fabric:12.4.0.22") {transitive = false}
+	include(modImplementation("thelm.jeidrawables:JEIDrawables-Fabric:19.3.1"))
+	modImplementation "io.wispforest:owo-lib:0.10.3+1.19.3"
+	modImplementation "curse.maven:alloy-forgery-438718:4403713"
 }
 
 def replacements = [
@@ -209,7 +209,7 @@ publishMods {
 	type = STABLE
 	modLoaders.add("fabric")
 	additionalFiles.from(remapSourcesJar.archiveFile)
-
+	
 	curseforge {
 		accessToken = providers.gradleProperty("curseforge.token")
 		projectId = "1298160"
