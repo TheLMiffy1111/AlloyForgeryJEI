@@ -210,7 +210,7 @@ publishMods {
 	type = STABLE
 	modLoaders.add("fabric")
 	additionalFiles.from(remapSourcesJar.archiveFile)
-	
+
 	curseforge {
 		accessToken = providers.gradleProperty("curseforge.token")
 		projectId = "1298160"
