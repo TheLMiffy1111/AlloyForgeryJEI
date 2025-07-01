@@ -31,7 +31,7 @@ public record AlloyForgeRecipeWithOverride(AlloyForgeRecipe recipe, int override
 				return overrideOutputs.get(overrideIndex - 1);
 			}
 		}
-		return recipe.getResultItem();
+		return recipe.getOutput();
 	}
 
 	public Component getTierComponent() {
