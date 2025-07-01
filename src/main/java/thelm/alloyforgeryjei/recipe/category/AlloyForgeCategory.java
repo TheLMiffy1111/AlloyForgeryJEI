@@ -30,6 +30,7 @@ import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.crafting.RecipeHolder;
 import thelm.alloyforgeryjei.AlloyForgeryJEI;
 import thelm.jeidrawables.JEIDrawables;
 import thelm.jeidrawables.gui.render.BlankDrawable;
@@ -37,7 +38,7 @@ import thelm.jeidrawables.gui.render.ResourceDrawable;
 import wraith.alloyforgery.AlloyForgery;
 import wraith.alloyforgery.recipe.AlloyForgeRecipe;
 
-public class AlloyForgeCategory implements IRecipeCategory<AlloyForgeRecipe> {
+public class AlloyForgeCategory implements IRecipeCategory<RecipeHolder<AlloyForgeRecipe>> {
 
 	public static final Component TITLE = Component.translatable("container.alloy_forgery.rei.title");
 	public static final Component BUTTON = Component.translatable("container.alloy_forgery.rei.button");
@@ -57,7 +58,7 @@ public class AlloyForgeCategory implements IRecipeCategory<AlloyForgeRecipe> {
 	}
 
 	@Override
-	public RecipeType<AlloyForgeRecipe> getRecipeType() {
+	public RecipeType<RecipeHolder<AlloyForgeRecipe>> getRecipeType() {
 		return AlloyForgeryJEI.ALLOY_FORGE;
 	}
 
@@ -87,7 +88,8 @@ public class AlloyForgeCategory implements IRecipeCategory<AlloyForgeRecipe> {
 	}
 
 	@Override
-	public void setRecipe(IRecipeLayoutBuilder builder, AlloyForgeRecipe recipe, IFocusGroup focuses) {
+	public void setRecipe(IRecipeLayoutBuilder builder, RecipeHolder<AlloyForgeRecipe> recipeHolder, IFocusGroup focuses) {
+		AlloyForgeRecipe recipe = recipeHolder.value();
 		List<List<ItemStack>> inputs = recipe.getIngredientsMap().entrySet().stream().
 				map(entry -> Arrays.stream(entry.getKey().getItems()).
 						map(s -> s.copyWithCount(entry.getValue())).
@@ -98,24 +100,25 @@ public class AlloyForgeCategory implements IRecipeCategory<AlloyForgeRecipe> {
 			int y = 22 + i / 5 * 18;
 			builder.addSlot(RecipeIngredientRole.INPUT, x, y).addItemStacks(inputs.get(i)).setBackground(INPUT_SLOT, -1, -1);
 		}
-		builder.addSlot(RecipeIngredientRole.OUTPUT, 103, 29).addItemStack(recipe.getBaseOutput()).setBackground(JEIDrawables.OUTPUT_SLOT, -5, -5);
+		builder.addSlot(RecipeIngredientRole.OUTPUT, 103, 29).addItemStack(recipe.getBaseResult()).setBackground(JEIDrawables.OUTPUT_SLOT, -5, -5);
 		builder.addInvisibleIngredients(RecipeIngredientRole.OUTPUT).addItemStacks(recipe.getTierOverrides().values().asList());
 	}
 
 	@Override
-	public void createRecipeExtras(IRecipeExtrasBuilder builder, AlloyForgeRecipe recipe, IFocusGroup focuses) {
+	public void createRecipeExtras(IRecipeExtrasBuilder builder, RecipeHolder<AlloyForgeRecipe> recipeHolder, IFocusGroup focuses) {
+		AlloyForgeRecipe recipe = recipeHolder.value();
 		builder.addDrawable(FAUCET, 101, 0);
 		builder.addDrawable(INGOT, 105, 3);
 		if(!recipe.getTierOverrides().isEmpty()) {
 			IRecipeSlotDrawable outputSlot = builder.getRecipeSlots().getSlots(RecipeIngredientRole.OUTPUT).get(0);
 			IStackHelper stackHelper = AlloyForgeryJEI.jeiHelpers.getStackHelper();
-			List<String> outputUids = new ArrayList<>(recipe.getTierOverrides().size() + 1);
-			outputUids.add(stackHelper.getUniqueIdentifierForStack(recipe.getBaseOutput(), UidContext.Recipe));
+			List<Object> outputUids = new ArrayList<>(recipe.getTierOverrides().size() + 1);
+			outputUids.add(stackHelper.getUidForStack(recipe.getBaseResult(), UidContext.Recipe));
 			for(ItemStack output : recipe.getTierOverrides().values()) {
-				outputUids.add(stackHelper.getUniqueIdentifierForStack(output, UidContext.Recipe));
+				outputUids.add(stackHelper.getUidForStack(output, UidContext.Recipe));
 			}
 			int index = focuses.getItemStackFocuses(RecipeIngredientRole.OUTPUT).
-					map(f -> stackHelper.getUniqueIdentifierForStack(f.getTypedValue().getIngredient(), UidContext.Recipe)).
+					map(f -> stackHelper.getUidForStack(f.getTypedValue().getIngredient(), UidContext.Recipe)).
 					mapToInt(outputUids::indexOf).filter(i -> i >= 0).min().orElse(0);
 			StateHandler stateHandler = new StateHandler(recipe, outputSlot, index);
 			builder.addSlottedWidget(stateHandler, List.of(outputSlot));
@@ -124,7 +127,8 @@ public class AlloyForgeCategory implements IRecipeCategory<AlloyForgeRecipe> {
 	}
 
 	@Override
-	public void draw(AlloyForgeRecipe recipe, IRecipeSlotsView recipeSlotsView, GuiGraphics guiGraphics, double mouseX, double mouseY) {
+	public void draw(RecipeHolder<AlloyForgeRecipe> recipeHolder, IRecipeSlotsView recipeSlotsView, GuiGraphics guiGraphics, double mouseX, double mouseY) {
+		AlloyForgeRecipe recipe = recipeHolder.value();
 		INPUT_SLOTS.draw(guiGraphics, 0, 20);
 		Font font = Minecraft.getInstance().font;
 		Component fuelComponent = Component.translatable("container.alloy_forgery.rei.fuel_per_tick", recipe.getFuelPerTick());
@@ -144,7 +148,8 @@ public class AlloyForgeCategory implements IRecipeCategory<AlloyForgeRecipe> {
 	}
 
 	@Override
-	public void getTooltip(ITooltipBuilder tooltip, AlloyForgeRecipe recipe, IRecipeSlotsView recipeSlotsView, double mouseX, double mouseY) {
+	public void getTooltip(ITooltipBuilder tooltip, RecipeHolder<AlloyForgeRecipe> recipeHolder, IRecipeSlotsView recipeSlotsView, double mouseX, double mouseY) {
+		AlloyForgeRecipe recipe = recipeHolder.value();
 		if(!recipe.getTierOverrides().isEmpty() &&
 				mouseX >= 120 && mouseX < 132 && mouseY >= 0 && mouseY < 12) {
 			tooltip.add(BUTTON);

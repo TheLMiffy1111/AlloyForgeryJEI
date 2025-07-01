@@ -13,6 +13,7 @@ import net.minecraft.client.Minecraft;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.crafting.RecipeHolder;
 import net.minecraft.world.item.crafting.RecipeManager;
 import thelm.alloyforgeryjei.recipe.category.AlloyForgeCategory;
 import wraith.alloyforgery.AlloyForgeScreenHandler;
@@ -25,12 +26,12 @@ import wraith.alloyforgery.recipe.AlloyForgeRecipe;
 
 public class AlloyForgeryJEI implements IModPlugin {
 
-	public static final ResourceLocation UID = new ResourceLocation("alloyforgeryjei:alloy_forgery");
+	public static final ResourceLocation UID = ResourceLocation.parse("alloyforgeryjei:alloy_forgery");
 
 	public static IJeiHelpers jeiHelpers;
 	public static IJeiRuntime jeiRuntime;
 
-	public static final RecipeType<AlloyForgeRecipe> ALLOY_FORGE = new RecipeType<>(AlloyForgery.id("alloy_forge"), AlloyForgeRecipe.class);
+	public static final RecipeType<RecipeHolder<AlloyForgeRecipe>> ALLOY_FORGE = RecipeType.createRecipeHolderType(AlloyForgery.id("alloy_forge"));
 
 	@Override
 	public ResourceLocation getPluginUid() {
@@ -57,7 +58,7 @@ public class AlloyForgeryJEI implements IModPlugin {
 
 	@Override
 	public void registerRecipeCatalysts(IRecipeCatalystRegistration registration) {
-		ForgeRegistry.controllerBlocksView().stream().
+		ForgeRegistry.getControllerBlocks().stream().
 		map(ForgeControllerBlock.class::cast).
 		sorted(this::compareForgeControllers).
 		map(ItemStack::new).

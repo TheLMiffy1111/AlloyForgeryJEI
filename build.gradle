@@ -69,6 +69,7 @@ repositories {
 			}
 		}
 		filter {
+			includeGroup "io.wispforest.endec"
 			includeGroup "io.wispforest"
 		}
 	}
@@ -84,14 +85,14 @@ repositories {
 	}
 }
 
-def mcVersion = "1.20.1"
+def mcVersion = "1.21.1"
 def modName = "AlloyForgeryJEI"
 def modId = "alloyforgeryjei"
-def specVersion = "20.1"
+def specVersion = "21.1"
 def vendor = "thelm"
 
 group = "thelm.alloyforgeryjei"
-version = "20.1.0"
+version = "21.1.0"
 
 archivesBaseName = modName
 
@@ -101,7 +102,7 @@ sourceSets {
 
 java {
 	toolchain {
-		languageVersion = JavaLanguageVersion.of(17)
+		languageVersion = JavaLanguageVersion.of(21)
 		vendor = JvmVendorSpec.AZUL
 	}
 	withSourcesJar()
@@ -130,23 +131,23 @@ dependencies {
 	implementation "org.apache.logging.log4j:log4j-core:2.24.3"
 
 	// Minecraft
-	minecraft "com.mojang:minecraft:1.20.1"
+	minecraft "com.mojang:minecraft:1.21.1"
 	mappings loom.layered {
 		officialMojangMappings {
 			nameSyntheticMembers = false
 		}
-		parchment "org.parchmentmc.data:parchment-1.20.1:2023.09.03@zip"
+		parchment "org.parchmentmc.data:parchment-1.21.1:2024.11.17@zip"
 	}
 	modImplementation "net.fabricmc:fabric-loader:0.16.14"
-	modImplementation "net.fabricmc.fabric-api:fabric-api:0.92.6+1.20.1"
-	modImplementation "eu.pb4:placeholder-api:2.1.4+1.20.1"
-	modImplementation "com.terraformersmc:modmenu:7.2.2"
+	modImplementation "net.fabricmc.fabric-api:fabric-api:0.116.3+1.21.1"
+	modImplementation "eu.pb4:placeholder-api:2.4.2+1.21"
+	modImplementation "com.terraformersmc:modmenu:11.0.3"
 
 	// Dependencies
-	modImplementation("mezz.jei:jei-1.20.1-fabric:15.20.0.108") {transitive = false}
-	include(modImplementation("thelm.jeidrawables:JEIDrawables-Fabric:20.1.1"))
-	modImplementation "io.wispforest:owo-lib:0.11.2+1.20"
-	modImplementation "curse.maven:alloy-forgery-438718:4944647"
+	modImplementation("mezz.jei:jei-1.21.1-fabric:19.21.1.305") {transitive = false}
+	include(modImplementation("thelm.jeidrawables:JEIDrawables-Fabric:21.1.1"))
+	modImplementation "io.wispforest:owo-lib:0.12.15.4+1.21"
+	modImplementation "curse.maven:alloy-forgery-438718:5611901"
 }
 
 def replacements = [
