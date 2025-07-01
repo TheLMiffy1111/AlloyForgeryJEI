@@ -1,13 +1,11 @@
 package thelm.alloyforgeryjei.recipe;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.IntStream;
 import java.util.stream.Stream;
 
 import net.minecraft.network.chat.Component;
-import net.minecraft.network.chat.TranslatableComponent;
 import net.minecraft.world.item.ItemStack;
 import wraith.alloyforgery.recipe.AlloyForgeRecipe;
 
@@ -45,10 +43,10 @@ public record AlloyForgeRecipeWithOverride(AlloyForgeRecipe recipe, int override
 				tierArg = overrideRanges.get(overrideIndex - 1);
 			}
 		}
-		return new TranslatableComponent("container.alloy_forgery.rei.min_tier", tierArg);
+		return Component.translatable("container.alloy_forgery.rei.min_tier", tierArg);
 	}
 
 	public Component getFuelComponent() {
-		return new TranslatableComponent("container.alloy_forgery.rei.fuel_per_tick", recipe.getFuelPerTick());
+		return Component.translatable("container.alloy_forgery.rei.fuel_per_tick", recipe.getFuelPerTick());
 	}
 }

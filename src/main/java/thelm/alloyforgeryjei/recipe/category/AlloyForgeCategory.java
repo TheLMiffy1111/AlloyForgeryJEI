@@ -2,7 +2,6 @@ package thelm.alloyforgeryjei.recipe.category;
 
 import java.util.List;
 
-import com.mojang.blaze3d.platform.InputConstants.Key;
 import com.mojang.blaze3d.vertex.PoseStack;
 
 import mezz.jei.api.gui.builder.IRecipeLayoutBuilder;
@@ -15,7 +14,6 @@ import mezz.jei.api.recipe.category.IRecipeCategory;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.Font;
 import net.minecraft.network.chat.Component;
-import net.minecraft.network.chat.TranslatableComponent;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.ItemStack;
 import thelm.alloyforgeryjei.AlloyForgeryJEI;
@@ -27,7 +25,7 @@ import wraith.alloyforgery.AlloyForgery;
 
 public class AlloyForgeCategory implements IRecipeCategory<AlloyForgeRecipeWithOverride> {
 
-	public static final Component TITLE = new TranslatableComponent("container.alloy_forgery.rei.title");
+	public static final Component TITLE = Component.translatable("container.alloy_forgery.rei.title");
 
 	public static final ResourceLocation BACKGROUND = AlloyForgery.id("textures/gui/forge_controller.png");
 	public static final ResourceDrawable INPUT_SLOT = new ResourceDrawable(BACKGROUND, 208, 0, 18, 18);
@@ -39,16 +37,6 @@ public class AlloyForgeCategory implements IRecipeCategory<AlloyForgeRecipeWithO
 
 	public AlloyForgeCategory() {
 		background = new BlankDrawable(getWidth(), getHeight());
-	}
-
-	@Override
-	public ResourceLocation getUid() {
-		return AlloyForgeryJEI.ALLOY_FORGE.getUid();
-	}
-
-	@Override
-	public Class<? extends AlloyForgeRecipeWithOverride> getRecipeClass() {
-		return AlloyForgeryJEI.ALLOY_FORGE.getRecipeClass();
 	}
 
 	@Override
@@ -66,10 +54,12 @@ public class AlloyForgeCategory implements IRecipeCategory<AlloyForgeRecipeWithO
 		return background;
 	}
 
+	@Override
 	public int getWidth() {
 		return 124;
 	}
 
+	@Override
 	public int getHeight() {
 		return 58;
 	}

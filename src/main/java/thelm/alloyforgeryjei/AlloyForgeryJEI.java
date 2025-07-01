@@ -54,7 +54,7 @@ public class AlloyForgeryJEI implements IModPlugin {
 
 	@Override
 	public void registerRecipeTransferHandlers(IRecipeTransferRegistration registration) {
-		registration.addRecipeTransferHandler(AlloyForgeScreenHandler.class, ALLOY_FORGE, 2, 10, 12, 36);
+		registration.addRecipeTransferHandler(AlloyForgeScreenHandler.class, AlloyForgery.ALLOY_FORGE_SCREEN_HANDLER_TYPE, ALLOY_FORGE, 2, 10, 12, 36);
 	}
 
 	@Override
