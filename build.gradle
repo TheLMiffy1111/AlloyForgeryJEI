@@ -215,6 +215,7 @@ publishMods {
 		projectId = "1298160"
 		minecraftVersions.add(mcVersion)
 		requires "jei", "alloy-forgery"
+		incompatible "roughly-enough-items-hacks", "emi"
 	}
 
 	modrinth {
@@ -222,5 +223,6 @@ publishMods {
 		projectId = "k4jSlOb9"
 		minecraftVersions.add(mcVersion)
 		requires "jei", "alloy-forgery"
+		incompatible "roughly-enough-items-hacks", "emi"
 	}
 }
