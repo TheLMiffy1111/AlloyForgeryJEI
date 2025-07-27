@@ -1,0 +1,45 @@
+modLoader = "lowcodefml"
+loaderVersion = "[47,)"
+license = "MIT"
+issueTrackerURL = "https://github.com/TheLMiffy1111/AlloyForgeryJEI/issues"
+
+[properties]
+	"connector:placeholder" = true
+
+[[mods]]
+	modId = "alloyforgeryjei"
+	version = "0@VERSION@"
+	displayName = "AlloyForgeryJEI"
+	description = "An addon to Alloy Forgery that adds JEI support."
+	logoFile = "alloyforgeryjei.logo.png"
+	authors = "TheLMiffy1111"
+
+[[dependencies.alloyforgeryjei]]
+	modId = "minecraft"
+	versionRange = "[1.20,1.20.2)"
+	mandatory = true
+
+[[dependencies.alloyforgeryjei]]
+	modId = "connector"
+	versionRange = "*"
+	mandatory = true
+
+[[dependencies.alloyforgeryjei]]
+	modId = "connectorextras"
+	versionRange = "*"
+	mandatory = true
+
+[[dependencies.alloyforgeryjei]]
+	modId = "jei"
+	versionRange = "*"
+	mandatory = true
+
+[[dependencies.alloyforgeryjei]]
+	modId = "jeidrawables"
+	versionRange = "*"
+	mandatory = true
+
+[[dependencies.alloyforgeryjei]]
+	modId = "alloy_forgery"
+	versionRange = "*"
+	mandatory = true

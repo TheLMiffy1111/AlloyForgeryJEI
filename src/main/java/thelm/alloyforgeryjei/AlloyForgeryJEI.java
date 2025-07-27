@@ -1,5 +1,8 @@
 package thelm.alloyforgeryjei;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
 import mezz.jei.api.IModPlugin;
 import mezz.jei.api.helpers.IJeiHelpers;
 import mezz.jei.api.recipe.RecipeType;
@@ -9,6 +12,7 @@ import mezz.jei.api.registration.IRecipeCategoryRegistration;
 import mezz.jei.api.registration.IRecipeRegistration;
 import mezz.jei.api.registration.IRecipeTransferRegistration;
 import mezz.jei.api.runtime.IJeiRuntime;
+import net.fabricmc.loader.api.FabricLoader;
 import net.minecraft.client.Minecraft;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.resources.ResourceLocation;
@@ -26,6 +30,7 @@ import wraith.alloyforgery.recipe.AlloyForgeRecipe;
 public class AlloyForgeryJEI implements IModPlugin {
 
 	public static final ResourceLocation UID = new ResourceLocation("alloyforgeryjei:alloy_forgery");
+	public static final Logger LOGGER = LogManager.getLogger();
 
 	public static IJeiHelpers jeiHelpers;
 	public static IJeiRuntime jeiRuntime;
@@ -41,22 +46,38 @@ public class AlloyForgeryJEI implements IModPlugin {
 	public void registerCategories(IRecipeCategoryRegistration registration) {
 		jeiHelpers = registration.getJeiHelpers();
 
+		if(checkDisabled()) {
+			return;
+		}
+
 		registration.addRecipeCategories(new AlloyForgeCategory());
 	}
 
 	@Override
 	public void registerRecipes(IRecipeRegistration registration) {
+		if(checkDisabled()) {
+			return;
+		}
+
 		RecipeManager recipeManager = Minecraft.getInstance().level.getRecipeManager();
 		registration.addRecipes(ALLOY_FORGE, recipeManager.getAllRecipesFor(AlloyForgeRecipe.Type.INSTANCE));
 	}
 
 	@Override
 	public void registerRecipeTransferHandlers(IRecipeTransferRegistration registration) {
+		if(checkDisabled()) {
+			return;
+		}
+
 		registration.addRecipeTransferHandler(AlloyForgeScreenHandler.class, AlloyForgery.ALLOY_FORGE_SCREEN_HANDLER_TYPE, ALLOY_FORGE, 2, 10, 12, 36);
 	}
 
 	@Override
 	public void registerRecipeCatalysts(IRecipeCatalystRegistration registration) {
+		if(checkDisabled()) {
+			return;
+		}
+
 		ForgeRegistry.controllerBlocksView().stream().
 		map(ForgeControllerBlock.class::cast).
 		sorted(this::compareForgeControllers).
@@ -66,6 +87,10 @@ public class AlloyForgeryJEI implements IModPlugin {
 
 	@Override
 	public void registerGuiHandlers(IGuiHandlerRegistration registration) {
+		if(checkDisabled()) {
+			return;
+		}
+
 		registration.addRecipeClickArea(AlloyForgeScreen.class, 142, 20, 21, 24, ALLOY_FORGE);
 	}
 
@@ -94,5 +119,17 @@ public class AlloyForgeryJEI implements IModPlugin {
 			return res;
 		}
 		return BuiltInRegistries.BLOCK.getKey(a).compareTo(BuiltInRegistries.BLOCK.getKey(b));
+	}
+
+	public boolean checkDisabled() {
+		if(FabricLoader.getInstance().isModLoaded("rei_plugin_compatibilities")) {
+			LOGGER.warn("AlloyForgeryJEI is disabled with REIPC as Alloy Forgery has native REI support");
+			return true;
+		}
+		if(FabricLoader.getInstance().isModLoaded("emi")) {
+			LOGGER.warn("AlloyForgeryJEI is disabled with EMI as Alloy Forgery has native EMI support");
+			return true;
+		}
+		return false;
 	}
 }
