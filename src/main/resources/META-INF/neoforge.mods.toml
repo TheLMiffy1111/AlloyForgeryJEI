@@ -1,0 +1,57 @@
+modLoader = "lowcodefml"
+loaderVersion = "[2,)"
+license = "MIT"
+issueTrackerURL = "https://github.com/TheLMiffy1111/AlloyForgeryJEI/issues"
+
+[properties]
+	"connector:placeholder" = true
+
+[[mods]]
+	modId = "alloyforgeryjei"
+	version = "0@VERSION@"
+	displayName = "AlloyForgeryJEI"
+	description = "An addon to Alloy Forgery that adds JEI support."
+	logoFile = "alloyforgeryjei.logo.png"
+	authors = "TheLMiffy1111"
+
+[[dependencies.alloyforgeryjei]]
+	modId = "minecraft"
+	versionRange = "[1.21,1.21.2)"
+	type = "required"
+
+[[dependencies.alloyforgeryjei]]
+	modId = "connector"
+	versionRange = "*"
+	type = "required"
+
+[[dependencies.alloyforgeryjei]]
+	modId = "connectorextras"
+	versionRange = "*"
+	type = "required"
+
+[[dependencies.alloyforgeryjei]]
+	modId = "jei"
+	versionRange = "*"
+	type = "required"
+
+[[dependencies.alloyforgeryjei]]
+	modId = "jeidrawables"
+	versionRange = "*"
+	type = "required"
+
+[[dependencies.alloyforgeryjei]]
+	modId = "alloy_forgery"
+	versionRange = "*"
+	type = "required"
+
+[[dependencies.alloyforgeryjei]]
+	modId = "rei_plugin_compatibilities"
+	versionRange = "*"
+	type = "discouraged"
+	reason = "Alloy Forgery has native REI support"
+
+[[dependencies.alloyforgeryjei]]
+	modId = "emi"
+	versionRange = "*"
+	type = "discouraged"
+	reason = "Alloy Forgery has native EMI support"

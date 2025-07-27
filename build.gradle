@@ -92,7 +92,7 @@ def specVersion = "21.1"
 def vendor = "thelm"
 
 group = "thelm.alloyforgeryjei"
-version = "21.1.0"
+version = "21.1.1"
 
 archivesBaseName = modName
 
