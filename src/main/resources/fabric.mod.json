@@ -26,7 +26,8 @@
 		"jeidrawables": "*",
 		"alloy_forgery": "*"
 	},
-	"breaks": {
+	"conflicts": {
+		"rei_plugin_compatibilities": "*",
 		"emi": "*"
 	}
 }
