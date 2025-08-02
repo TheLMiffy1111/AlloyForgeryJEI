@@ -144,7 +144,7 @@ dependencies {
 	modImplementation "com.terraformersmc:modmenu:11.0.3"
 
 	// Dependencies
-	modImplementation("mezz.jei:jei-1.21.1-fabric:19.21.1.305") {transitive = false}
+	modImplementation("mezz.jei:jei-1.21.1-fabric:19.22.1.316") {transitive = false}
 	include(modImplementation("thelm.jeidrawables:JEIDrawables-Fabric:21.1.2"))
 	modImplementation "io.wispforest:owo-lib:0.12.15.4+1.21"
 	modImplementation "curse.maven:alloy-forgery-438718:5611901"
