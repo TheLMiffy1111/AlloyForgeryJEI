@@ -20,7 +20,7 @@ issueTrackerURL = "https://github.com/TheLMiffy1111/AlloyForgeryJEI/issues"
 	type = "required"
 
 [[dependencies.alloyforgeryjei]]
-	modId = "connector"
+	modId = "connectormod"
 	versionRange = "*"
 	type = "required"
 
