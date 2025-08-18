@@ -137,7 +137,7 @@ dependencies {
 		}
 		parchment "org.parchmentmc.data:parchment-1.19.3:2023.06.25@zip"
 	}
-	modImplementation "net.fabricmc:fabric-loader:0.17.0"
+	modImplementation "net.fabricmc:fabric-loader:0.17.2"
 	modImplementation "net.fabricmc.fabric-api:fabric-api:0.76.1+1.19.3"
 	modImplementation "eu.pb4:placeholder-api:2.0.0-rc.1+1.19.3"
 	modImplementation "com.terraformersmc:modmenu:5.1.0"
