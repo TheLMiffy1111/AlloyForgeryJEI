@@ -136,12 +136,12 @@ dependencies {
 		parchment "org.parchmentmc.data:parchment-1.21.1:2024.11.17@zip"
 	}
 	modImplementation "net.fabricmc:fabric-loader:0.18.1"
-	modImplementation "net.fabricmc.fabric-api:fabric-api:0.116.7+1.21.1"
+	modImplementation "net.fabricmc.fabric-api:fabric-api:0.116.8+1.21.1"
 	modImplementation "eu.pb4:placeholder-api:2.4.2+1.21"
 	modImplementation "com.terraformersmc:modmenu:11.0.3"
 
 	// Dependencies
-	modImplementation("mezz.jei:jei-1.21.1-fabric:19.25.1.332") {transitive = false}
+	modImplementation("mezz.jei:jei-1.21.1-fabric:19.27.0.340") {transitive = false}
 	include(modImplementation("thelm.jeidrawables:JEIDrawables-Fabric:21.1.4"))
 	modImplementation "io.wispforest:owo-lib:0.12.15.4+1.21"
 	modImplementation "curse.maven:alloy-forgery-438718:5611901"
