@@ -13,6 +13,7 @@ issueTrackerURL = "https://github.com/TheLMiffy1111/AlloyForgeryJEI/issues"
 	description = "An addon to Alloy Forgery that adds JEI support."
 	logoFile = "alloyforgeryjei.logo.png"
 	authors = "TheLMiffy1111"
+	displayURL = "https://www.curseforge.com/minecraft/mc-mods/alloyforgeryjei"
 
 [[dependencies.alloyforgeryjei]]
 	modId = "minecraft"
