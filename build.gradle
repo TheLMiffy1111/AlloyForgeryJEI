@@ -141,7 +141,7 @@ dependencies {
 
 	// Dependencies
 	modImplementation("mezz.jei:jei-1.20.1-fabric:15.20.0.129") {transitive = false}
-	include(modImplementation("thelm.jeidrawables:JEIDrawables-Fabric:20.1.4"))
+	include(modImplementation("thelm.jeidrawables:JEIDrawables-Fabric:20.1.7"))
 	modImplementation "io.wispforest:owo-lib:0.11.2+1.20"
 	modImplementation "curse.maven:alloy-forgery-438718:4944647"
 }
